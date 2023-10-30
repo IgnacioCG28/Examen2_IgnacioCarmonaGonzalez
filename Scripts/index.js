@@ -1,10 +1,6 @@
 let saldo = 5000;
 let PIN = "1234";
 // Llamadas
-const deposit = document.getElementById("deposit");
-const retire = document.getElementById("retire");
-const transfer = document.getElementById("transfer");
-const password = document.getElementById("changePass");
 const showSaldo = document.getElementById("cajeroSaldo");
 
 // Evento al cargar
@@ -25,6 +21,7 @@ deposit.addEventListener("click",() => {
       alert("Inválida. Intentelo de nuevo.");
     } else {
       saldo += depo;
+      showSaldo.innerHTML = `Su saldo es ${saldo}`;
       alert(`Se han depositado ${depo.toFixed(2)} dinares`);
     }
 });
@@ -35,6 +32,7 @@ retire.addEventListener("click", () =>{
       alert("Cantidad inválida o insuficiente. Intente de nuevo.");
     } else {
       saldo -= reti;
+      showSaldo.innerHTML = `Su saldo es ${saldo}`;
       alert(`Ha retirado ${reti.toFixed(2)} €`);
     }
 });
@@ -45,11 +43,13 @@ transfer.addEventListener("click", () => {
     if (isNaN(transf || transf <= 0 || transf >= saldo)) {
         alert("No tienes esos dinares")
     } else {
+        saldo -= transf;
+        showSaldo.innerHTML = `Su saldo es ${saldo}`;
         const response = alert(`Has ingresado ${transf}€ a la cuenta ${cuenta}`);
     }
 });
 
-password.addEventListener("click", () =>{
+changePass.addEventListener("click", () =>{
 const pass = parseInt(prompt("Escriba la nueva contraseña de digitos:"))
 if (isNaN(pass)) {
     alert("Te he dicho digitos.")

@@ -8,20 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   //Añado un input para tomar el valor del dinero por gusto
   const input = document.getElementById("dinares");
 
-  // Evento al cargar
   window.addEventListener("load", () => {
-    const response = parseInt(prompt("¿Cuál es el PIN?"));
-    const intentos = 3;
-    if (response !== PIN_CORRECTO) {
-      alert(`Fallo PIN. Intentos ${intentos}`);
-      intentos -= 1;
+    if (prompt("Escriba su PIN") != PIN_CORRECTO) {
+      alert("Error");
     } else {
-        if (intentos === 0) {
-            
-        } else {
-            showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
-
-        }
+      showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
     }
   });
 
@@ -29,8 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Para depositar dinero
   deposit.addEventListener("click", () => {
-   //const depo = parseFloat(prompt("Ingrese cantidad para depositar:"));
-   const depo = parseFloat(input.value);
+    const depo = parseFloat(input.value);
     if (isNaN(depo) || depo <= 0) {
       alert("Inválida. Intentelo de nuevo.");
     } else {
@@ -42,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Para retirar dinero de la cuenta
   retire.addEventListener("click", () => {
-    //const reti = parseFloat(prompt("Ingrese cantidad a retirar:"));
     const reti = parseFloat(input.value);
     if (isNaN(reti) || reti <= 0 || reti > saldo) {
       alert("Cantidad inválida o insuficiente. Intente de nuevo.");
@@ -53,14 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Para transferir dinero a otra cuenta
   transfer.addEventListener("click", () => {
     const cuenta = prompt(
       "Ingrese la cuenta a la que desee ingresar el dinero:"
     );
-    //const transf = parseFloat(prompt("Ingrese cantidad a tranferir:"));
-    const reti = parseFloat(input.value);
-    if (isNaN(transf || transf >= saldo || transf <= 0)) {
+    if (isNaN(transf) || transf >= saldo || transf <= 0) {
       alert("No tienes esos dinares");
     } else {
       saldo -= transf;
@@ -89,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+  exit.addEventListener("click", () => {
 
-  exit.addEventListener("click", () =>{
-    
-  })
+
+  });
 });

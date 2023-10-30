@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "Tilt_Neon";
+  font-family: 'Tilt_Neon';
   src: url(/Assets/fonts/Tilt_Neon/);
 }
 
 html {
-  font-family: "Tilt_Neon", "Lucida Sans Unicode", "Lucida Grande",
+  font-family: 'Tilt_Neon', "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
@@ -44,7 +44,7 @@ button:hover {
 }
 
 .cajeroMenu {
-  background-color: royalblue;
+  background: linear-gradient(rgb(14, 76, 174),rgb(33, 165, 188));
   border-radius: 20px;
   margin-top: 50px;
   width: 550px;

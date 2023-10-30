@@ -12,22 +12,30 @@ deposit.addEventListener("click",depo);
 retire.addEventListener("click", reti);
 transfer.addEventListener("click", transf)
 
+
 function depo() {
-    let money = parseFloat(prompt("Cantidad a depositar:"))
-    if (isNaN(money) || money <= 0) {
-        alert("Cantidad erronea")
-    }else {
-        saldo +=money;
-        console.log(saldo);
+    const depo = parseFloat(prompt("Ingrese cantidad para depositar:"));
+    if (isNaN(depo) || depo <= 0) {
+      alert("Cantidad inválida. Intente de nuevo.");
+    } else {
+      saldo += depo;
+      alert(`Se han depositado ${depo.toFixed(2)} €`);
     }
-}
+  }
 
 function reti() {
-    
-}
+    const reti = parseFloat(prompt("Ingrese cantidad a retirar:"));
+    if (isNaN(reti) || reti <= 0 || reti > saldo) {
+      alert("Cantidad inválida o insuficiente. Intente de nuevo.");
+    } else {
+      saldo -= reti;
+      alert(`Ha retirado ${reti.toFixed(2)} €`);
+    }
+  }
 
 function transf() {
-    
+    const cuenta = prompt("Ingrese la cuenta a la que desee ingresar el dinero:")
+    const transf = prompt("Ingrese cantidad a tranferir:")
 }
 
 
@@ -38,3 +46,4 @@ function checkPass() {
         alert("Error")
     }
 }
+

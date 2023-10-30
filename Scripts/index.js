@@ -54,16 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   transfer.addEventListener("click", () => {
-    const cuenta = prompt(
-      "Ingrese la cuenta a la que desee ingresar el dinero:"
-    );
-    validateIBAN(cuenta)
-    if (isNaN(transf) || transf >= saldo || transf <= 0) {
-      alert("No tienes esos dinares");
+    const transf = parseFloat(input.value);
+    if (isNaN(transf) || transf <= 0 || transf > saldo) {
+      alert("Transfiera cantidad válida.");
     } else {
+      const cuenta = prompt("Ingrese número de cuenta de destino:");
+      validateIBAN(cuenta);
       saldo -= transf;
-      showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
-      alert(`Has ingresado ${transf}€ a la cuenta ${cuenta}`);
     }
   });
 

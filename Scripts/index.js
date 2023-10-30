@@ -1,3 +1,8 @@
+/**
+ *  Autor: Ignacio Carmona González
+ *  Github: 
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
   let saldo = 5000;
   let PIN_CORRECTO = 1234;
@@ -8,12 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
   //Añado un input para tomar el valor del dinero por gusto
   const input = document.getElementById("dinares");
 
+  // Pedida de PIN al usuario
   window.addEventListener("load", () => {
-    if (prompt("Escriba su PIN") != PIN_CORRECTO) {
-      alert("Error");
-    } else {
-      showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
-    }
+    const delta = prompt("Contraseña")
+    let intentos = 3;
+    while (delta != PIN_CORRECTO) {
+        delta= prompt(`Intentos restantes ${intentos}:`)
+        intentos -= 1;
+        if (intentos == 0) {
+            alert("cagaste")
+        }
+    } showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
   });
 
   //Eventos
@@ -25,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Inválida. Intentelo de nuevo.");
     } else {
       saldo += depo;
-      showSaldo.innerHTML = `Su saldo es ${saldo}€`;
+      showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
       alert(`Se han depositado ${depo.toFixed(2)} dinares`);
     }
   });
@@ -42,17 +52,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Evento transferir a IBAN valido
   transfer.addEventListener("click", () => {
     const cuenta = prompt(
       "Ingrese la cuenta a la que desee ingresar el dinero:"
     );
-    if (isNaN(transf) || transf >= saldo || transf <= 0) {
-      alert("No tienes esos dinares");
+    if (!validateIBAN(cuenta)) {
+        alert("Cuenta Inexsitente")
     } else {
-      saldo -= transf;
-      showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
-      alert(`Has ingresado ${transf}€ a la cuenta ${cuenta}`);
+        if (isNaN(transf) || transf >= saldo || transf <= 0) {
+            alert("No tienes esos dinares");
+          } else {
+            saldo -= transf;
+            showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
+            alert(`Has ingresado ${transf}€ a la cuenta ${cuenta}`);
+          }
     }
+    
   });
 
   // Función de cambiar PIN:
@@ -79,4 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   });
+
+  function validateIBAN(cuenta) {
+    
+  }
 });

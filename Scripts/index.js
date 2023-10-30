@@ -1,6 +1,6 @@
 /**
  *  Autor: Ignacio Carmona González
- *  Github:
+ *  Github: https://github.com/IgnacioCG28/Examen2_IgnacioCarmonaGonzalez.git
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("load", () => {
     if (prompt("Escriba su PIN") != PIN_CORRECTO) {
       alert("Error PIN erróneo");
+      window.location.href =("/templates/block.html")
     } else {
       showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
     }
@@ -87,7 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-  exit.addEventListener("click", () => {});
+  exit.addEventListener("click", () => {
+    window.location.href =("/templates/exit.html")
+
+  });
 
   function validateIBAN(cuenta) {}
 });

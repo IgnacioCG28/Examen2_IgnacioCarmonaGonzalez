@@ -17,13 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("load", () => {
     if (prompt("Escriba su PIN") != PIN_CORRECTO) {
       alert("Error PIN erróneo");
-      window.location.href =("/templates/block.html")
+      window.location.href = "/templates/block.html";
     } else {
       showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
     }
   });
-
-  
 
   //Eventos
 
@@ -50,21 +48,22 @@ document.addEventListener("DOMContentLoaded", () => {
       alert(`Ha retirado ${reti.toFixed(2)} €`);
     }
   });
+  // Funcion transferencia y validacion IBAN
+  function validateIBAN(cuenta) {
+    return /[a-zA-Z]{2}[0-9]{20}$/g.test(cuenta);
+  }
 
   transfer.addEventListener("click", () => {
     const cuenta = prompt(
       "Ingrese la cuenta a la que desee ingresar el dinero:"
     );
-    if (!validateIBAN(cuenta)) {
-      alert("Cuenta Inexsitente");
+    validateIBAN(cuenta)
+    if (isNaN(transf) || transf >= saldo || transf <= 0) {
+      alert("No tienes esos dinares");
     } else {
-      if (isNaN(transf) || transf >= saldo || transf <= 0) {
-        alert("No tienes esos dinares");
-      } else {
-        saldo -= transf;
-        showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
-        alert(`Has ingresado ${transf}€ a la cuenta ${cuenta}`);
-      }
+      saldo -= transf;
+      showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
+      alert(`Has ingresado ${transf}€ a la cuenta ${cuenta}`);
     }
   });
 
@@ -89,9 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   exit.addEventListener("click", () => {
-    window.location.href =("/templates/exit.html")
-
+    window.location.href = "/templates/exit.html";
   });
-
-  function validateIBAN(cuenta) {}
 });

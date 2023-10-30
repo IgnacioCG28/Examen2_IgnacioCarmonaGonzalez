@@ -1,6 +1,6 @@
 /**
  *  Autor: Ignacio Carmona González
- *  Github: 
+ *  Github:
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,16 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Pedida de PIN al usuario
   window.addEventListener("load", () => {
-    const delta = prompt("Contraseña")
-    let intentos = 3;
-    while (delta != PIN_CORRECTO) {
-        delta= prompt(`Intentos restantes ${intentos}:`)
-        intentos -= 1;
-        if (intentos == 0) {
-            alert("cagaste")
-        }
-    } showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
+    if (prompt("Escriba su PIN") != PIN_CORRECTO) {
+      alert("Error PIN erróneo");
+    } else {
+      showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
+    }
   });
+
+  
 
   //Eventos
 
@@ -52,23 +50,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Evento transferir a IBAN valido
   transfer.addEventListener("click", () => {
     const cuenta = prompt(
       "Ingrese la cuenta a la que desee ingresar el dinero:"
     );
     if (!validateIBAN(cuenta)) {
-        alert("Cuenta Inexsitente")
+      alert("Cuenta Inexsitente");
     } else {
-        if (isNaN(transf) || transf >= saldo || transf <= 0) {
-            alert("No tienes esos dinares");
-          } else {
-            saldo -= transf;
-            showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
-            alert(`Has ingresado ${transf}€ a la cuenta ${cuenta}`);
-          }
+      if (isNaN(transf) || transf >= saldo || transf <= 0) {
+        alert("No tienes esos dinares");
+      } else {
+        saldo -= transf;
+        showSaldo.innerHTML = `Su saldo es: ${saldo}€`;
+        alert(`Has ingresado ${transf}€ a la cuenta ${cuenta}`);
+      }
     }
-    
   });
 
   // Función de cambiar PIN:
@@ -91,12 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-  exit.addEventListener("click", () => {
+  exit.addEventListener("click", () => {});
 
-
-  });
-
-  function validateIBAN(cuenta) {
-    
-  }
+  function validateIBAN(cuenta) {}
 });
